@@ -32,6 +32,6 @@
 
 + (RTCIceServer *)serverFromJSONDictionary:(NSDictionary *)dictionary;
 // CEOD provides different JSON, and this parses that.
-+ (NSArray *)serversFromCEODJSONDictionary:(NSDictionary *)dictionary;
++ (NSArray<RTCIceServer *> *)serversFromCEODJSONDictionary:(NSDictionary *)dictionary;
 
 @end
