@@ -38,4 +38,19 @@ public class Room {
 		}
 	}
 	
+	RemoteEndpoint.Async interpreterEndpoint;
+	public void setInterpreterEndpoint(RemoteEndpoint.Async endpoint) {
+		interpreterEndpoint = endpoint;
+	}
+	public RemoteEndpoint.Async getInterpreterEndpoint() {
+		return interpreterEndpoint;
+	}
+
+	RemoteEndpoint.Async microphoneEndpoint;
+	public void setMicrophoneEndpoint(RemoteEndpoint.Async endpoint) {
+		microphoneEndpoint = endpoint;
+	}
+	public RemoteEndpoint.Async getMicrophoneEndpoint() {
+		return microphoneEndpoint;
+	}
 }
