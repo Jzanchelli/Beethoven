@@ -1,0 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+target 'Beethoven' do
+ platform :ios, '12.0'
+ pod 'GoogleWebRTC'
+end

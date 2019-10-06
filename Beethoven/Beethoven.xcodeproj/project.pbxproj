@@ -3,21 +3,46 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F5C259C23494CBF001FE374 /* PeerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C259B23494CBF001FE374 /* PeerConnection.swift */; };
+		5F5C25A923495EBE001FE374 /* RTCIceServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C25A323495EBE001FE374 /* RTCIceServer+JSON.m */; };
+		5F5C25AA23495EBE001FE374 /* RTCIceCandidate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C25A423495EBE001FE374 /* RTCIceCandidate+JSON.m */; };
+		5F5C25AB23495EBE001FE374 /* RTCMediaConstraints+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C25A623495EBE001FE374 /* RTCMediaConstraints+JSON.m */; };
+		5F5C25AC23495EBE001FE374 /* RTCSessionDescription+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C25A823495EBE001FE374 /* RTCSessionDescription+JSON.m */; };
+		5F5C25B02349BA7B001FE374 /* TextListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C25AF2349BA7B001FE374 /* TextListener.swift */; };
+		5F8AE7E82349C86500F86CC8 /* LiveTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AE7E72349C86500F86CC8 /* LiveTextViewController.swift */; };
+		5F8AE7EA2349CAE400F86CC8 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AE7E92349CAE400F86CC8 /* ConnectViewController.swift */; };
+		A1E2F21A396D431C5D4D7A27 /* libPods-Beethoven.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB20ACC05BF3FFA581740F3B /* libPods-Beethoven.a */; };
 		B88DDA4D23491FEB00B436E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DDA4C23491FEB00B436E3 /* AppDelegate.swift */; };
-		B88DDA4F23491FEB00B436E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DDA4E23491FEB00B436E3 /* ViewController.swift */; };
+		B88DDA4F23491FEB00B436E3 /* TranscriptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DDA4E23491FEB00B436E3 /* TranscriptsViewController.swift */; };
 		B88DDA5223491FEB00B436E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B88DDA5023491FEB00B436E3 /* Main.storyboard */; };
 		B88DDA5423491FEC00B436E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B88DDA5323491FEC00B436E3 /* Assets.xcassets */; };
 		B88DDA5723491FEC00B436E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B88DDA5523491FEC00B436E3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4ECC9788436211B12DCF1AE8 /* Pods-Beethoven.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beethoven.debug.xcconfig"; path = "Target Support Files/Pods-Beethoven/Pods-Beethoven.debug.xcconfig"; sourceTree = "<group>"; };
+		58C45291BF392BE96A882CDB /* Pods-Beethoven.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beethoven.release.xcconfig"; path = "Target Support Files/Pods-Beethoven/Pods-Beethoven.release.xcconfig"; sourceTree = "<group>"; };
+		5F5C259B23494CBF001FE374 /* PeerConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnection.swift; sourceTree = "<group>"; };
+		5F5C25A023495EBD001FE374 /* Beethoven-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beethoven-Bridging-Header.h"; sourceTree = "<group>"; };
+		5F5C25A123495EBD001FE374 /* RTCSessionDescription+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCSessionDescription+JSON.h"; sourceTree = "<group>"; };
+		5F5C25A223495EBD001FE374 /* RTCIceCandidate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCIceCandidate+JSON.h"; sourceTree = "<group>"; };
+		5F5C25A323495EBE001FE374 /* RTCIceServer+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCIceServer+JSON.m"; sourceTree = "<group>"; };
+		5F5C25A423495EBE001FE374 /* RTCIceCandidate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCIceCandidate+JSON.m"; sourceTree = "<group>"; };
+		5F5C25A523495EBE001FE374 /* RTCMediaConstraints+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCMediaConstraints+JSON.h"; sourceTree = "<group>"; };
+		5F5C25A623495EBE001FE374 /* RTCMediaConstraints+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaConstraints+JSON.m"; sourceTree = "<group>"; };
+		5F5C25A723495EBE001FE374 /* RTCIceServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCIceServer+JSON.h"; sourceTree = "<group>"; };
+		5F5C25A823495EBE001FE374 /* RTCSessionDescription+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCSessionDescription+JSON.m"; sourceTree = "<group>"; };
+		5F5C25AF2349BA7B001FE374 /* TextListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextListener.swift; sourceTree = "<group>"; };
+		5F8AE7E72349C86500F86CC8 /* LiveTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextViewController.swift; sourceTree = "<group>"; };
+		5F8AE7E92349CAE400F86CC8 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		AB20ACC05BF3FFA581740F3B /* libPods-Beethoven.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beethoven.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88DDA4923491FEB00B436E3 /* Beethoven.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beethoven.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88DDA4C23491FEB00B436E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B88DDA4E23491FEB00B436E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B88DDA4E23491FEB00B436E3 /* TranscriptsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptsViewController.swift; sourceTree = "<group>"; };
 		B88DDA5123491FEB00B436E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B88DDA5323491FEC00B436E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B88DDA5623491FEC00B436E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,17 +54,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E2F21A396D431C5D4D7A27 /* libPods-Beethoven.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F5C259D2349516B001FE374 /* WebRTC+JSON */ = {
+			isa = PBXGroup;
+			children = (
+				5F5C25A223495EBD001FE374 /* RTCIceCandidate+JSON.h */,
+				5F5C25A423495EBE001FE374 /* RTCIceCandidate+JSON.m */,
+				5F5C25A723495EBE001FE374 /* RTCIceServer+JSON.h */,
+				5F5C25A323495EBE001FE374 /* RTCIceServer+JSON.m */,
+				5F5C25A523495EBE001FE374 /* RTCMediaConstraints+JSON.h */,
+				5F5C25A623495EBE001FE374 /* RTCMediaConstraints+JSON.m */,
+				5F5C25A123495EBD001FE374 /* RTCSessionDescription+JSON.h */,
+				5F5C25A823495EBE001FE374 /* RTCSessionDescription+JSON.m */,
+				5F5C25A023495EBD001FE374 /* Beethoven-Bridging-Header.h */,
+			);
+			path = "WebRTC+JSON";
+			sourceTree = "<group>";
+		};
+		7822B87920D5613BDBBE70B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB20ACC05BF3FFA581740F3B /* libPods-Beethoven.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3789B8AAE7688AB8036E870 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4ECC9788436211B12DCF1AE8 /* Pods-Beethoven.debug.xcconfig */,
+				58C45291BF392BE96A882CDB /* Pods-Beethoven.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B88DDA4023491FEB00B436E3 = {
 			isa = PBXGroup;
 			children = (
+				5F5C259D2349516B001FE374 /* WebRTC+JSON */,
 				B88DDA4B23491FEB00B436E3 /* Beethoven */,
 				B88DDA4A23491FEB00B436E3 /* Products */,
+				A3789B8AAE7688AB8036E870 /* Pods */,
+				7822B87920D5613BDBBE70B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,11 +117,15 @@
 			isa = PBXGroup;
 			children = (
 				B88DDA4C23491FEB00B436E3 /* AppDelegate.swift */,
-				B88DDA4E23491FEB00B436E3 /* ViewController.swift */,
 				B88DDA5023491FEB00B436E3 /* Main.storyboard */,
 				B88DDA5323491FEC00B436E3 /* Assets.xcassets */,
 				B88DDA5523491FEC00B436E3 /* LaunchScreen.storyboard */,
 				B88DDA5823491FEC00B436E3 /* Info.plist */,
+				5F5C259B23494CBF001FE374 /* PeerConnection.swift */,
+				5F5C25AF2349BA7B001FE374 /* TextListener.swift */,
+				B88DDA4E23491FEB00B436E3 /* TranscriptsViewController.swift */,
+				5F8AE7E72349C86500F86CC8 /* LiveTextViewController.swift */,
+				5F8AE7E92349CAE400F86CC8 /* ConnectViewController.swift */,
 			);
 			path = Beethoven;
 			sourceTree = "<group>";
@@ -71,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B88DDA5B23491FEC00B436E3 /* Build configuration list for PBXNativeTarget "Beethoven" */;
 			buildPhases = (
+				1FD991456AD646F3AB21F480 /* [CP] Check Pods Manifest.lock */,
 				B88DDA4523491FEB00B436E3 /* Sources */,
 				B88DDA4623491FEB00B436E3 /* Frameworks */,
 				B88DDA4723491FEB00B436E3 /* Resources */,
+				49B4187EEB7AA37CE78E2D13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +164,7 @@
 				TargetAttributes = {
 					B88DDA4823491FEB00B436E3 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -130,13 +199,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1FD991456AD646F3AB21F480 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Beethoven-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		49B4187EEB7AA37CE78E2D13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beethoven/Pods-Beethoven-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beethoven/Pods-Beethoven-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Beethoven/Pods-Beethoven-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B88DDA4523491FEB00B436E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B88DDA4F23491FEB00B436E3 /* ViewController.swift in Sources */,
+				5F5C25AB23495EBE001FE374 /* RTCMediaConstraints+JSON.m in Sources */,
+				B88DDA4F23491FEB00B436E3 /* TranscriptsViewController.swift in Sources */,
 				B88DDA4D23491FEB00B436E3 /* AppDelegate.swift in Sources */,
+				5F5C25AA23495EBE001FE374 /* RTCIceCandidate+JSON.m in Sources */,
+				5F5C25B02349BA7B001FE374 /* TextListener.swift in Sources */,
+				5F8AE7EA2349CAE400F86CC8 /* ConnectViewController.swift in Sources */,
+				5F8AE7E82349C86500F86CC8 /* LiveTextViewController.swift in Sources */,
+				5F5C25AC23495EBE001FE374 /* RTCSessionDescription+JSON.m in Sources */,
+				5F5C25A923495EBE001FE374 /* RTCIceServer+JSON.m in Sources */,
+				5F5C259C23494CBF001FE374 /* PeerConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,17 +399,22 @@
 		};
 		B88DDA5C23491FEC00B436E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ECC9788436211B12DCF1AE8 /* Pods-Beethoven.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6FCSZ99S73;
 				INFOPLIST_FILE = Beethoven/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jzanchelli.Beethoven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WebRTC+JSON/Beethoven-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -298,17 +422,21 @@
 		};
 		B88DDA5D23491FEC00B436E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58C45291BF392BE96A882CDB /* Pods-Beethoven.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6FCSZ99S73;
 				INFOPLIST_FILE = Beethoven/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jzanchelli.Beethoven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WebRTC+JSON/Beethoven-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
