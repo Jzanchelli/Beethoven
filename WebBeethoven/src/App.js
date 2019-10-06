@@ -1,5 +1,6 @@
 import React from 'react';
 import TranscriptionBox from './components/TranscriptionBox.js'
+import ConnectionPanel from './components/ConnectionPanel.js'
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
         </h1>
 
         <TranscriptionBox />
+        <ConnectionPanel />
+
       </div>
 
     </div>

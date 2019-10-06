@@ -31,7 +31,7 @@ class TranscriptionBox extends React.Component {
         if (this.state.value.length > this.state.lastReadIndex + this.BUFFER_FILL_LEVEL)
         {
             var bufferPiece = this.state.value.substr(this.state.lastReadIndex);
-            this.state.lastReadIndex = this.state.value.length - 1;
+            this.setState({lastReadIndex: this.state.value.length - 1});
             
             console.log("Buffer filled");
             this.onNewBufferPiece(bufferPiece);
@@ -50,7 +50,7 @@ class TranscriptionBox extends React.Component {
                 <textarea
                     className="form-control"
                     id="transcriptionTextBox"
-                    rows="50"
+                    rows="10"
                     value={ this.state.value }
                     onChangeCapture={ this.onChange }
                 />
