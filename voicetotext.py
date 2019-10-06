@@ -138,6 +138,7 @@ def listen_print_loop(responses):
         else:
             TEXT_TO_DISPLAY = transcript + overwrite_chars
             print(TEXT_TO_DISPLAY)
+            #send_to_server()
 
             # Use file to output text (commented out to move task to server/database)
             #outputfile = open("\\\\eawphx.edatwork.com\\uouprofile$\\cameron.anderson\\Desktop\\Hackathon2019\\transcript.txt","a")
@@ -153,23 +154,25 @@ def listen_print_loop(responses):
 
             num_chars_printed = 0
 
-async def send_to_server():
+#def send_to_server():
+def create_socket():
     '''websocket client side for sending'''
-    global TEXT_TO_DISPLAY
+    #global TEXT_TO_DISPLAY
     #get random number for room ID 
     random_num = random.randint(1,1001)
     print("Room ID: " + str(random_num))
-    uri = "ws://1557cbfc.ngrok.io/rooms/" + str(random_num) + "/send"
-    async with websockets.connect(uri) as websocket: 
-        test = TEXT_TO_DISPLAY
-        TEXT_TO_DISPLAY = ""
-        await websocket.send(test)
-        
+    uri = "ws://5b24e27f.ngrok.io/rooms/" + str(random_num) + "/send"
+    #async with websockets.connect(uri) as websocket: 
+    #    test = TEXT_TO_DISPLAY
+    #    TEXT_TO_DISPLAY = ""
+    #    await websocket.send(test)
+                
         #await websocket.send("hello dan ;)")
         
-asyncio.get_event_loop().run_until_complete(send_to_server()) 
+    return websockets.connect(uri)
+        
 
-def audio_connection():
+async def audio_connection():
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'en-US'  # a BCP-47 language tag
@@ -191,10 +194,15 @@ def audio_connection():
         responses = client.streaming_recognize(streaming_config, requests)
 
         # Now, put the transcription responses to use.
-        listen_print_loop(responses)
+        #listen_print_loop(responses)
+        async with create_socket() as websocket:
+            for response in responses:
+                await websocket.send(response.results[0].alternatives[0].transcript)
+                
 
 def main():
-    audio_connection()
-    
+    #audio_connection()
+    asyncio.get_event_loop().run_until_complete(audio_connection()) 
+     
 if __name__ == '__main__':
     main()
