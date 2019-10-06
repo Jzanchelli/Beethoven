@@ -404,14 +404,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6FCSZ99S73;
+				DEVELOPMENT_TEAM = HTD99XXJJ4;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Beethoven/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jzanchelli.Beethoven;
+				PRODUCT_BUNDLE_IDENTIFIER = me.danshields.Beethoven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WebRTC+JSON/Beethoven-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -427,14 +428,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6FCSZ99S73;
+				DEVELOPMENT_TEAM = HTD99XXJJ4;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Beethoven/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jzanchelli.Beethoven;
+				PRODUCT_BUNDLE_IDENTIFIER = me.danshields.Beethoven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WebRTC+JSON/Beethoven-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

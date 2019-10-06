@@ -12,13 +12,12 @@ import Compression
 
 let dummyError = NSError(domain: "TODO", code: -1, userInfo: nil)
 
-@available(iOS 13, *)
 class PeerConnection: NSObject {
 	
 	let factory = RTCPeerConnectionFactory()
 	var peerConnection: RTCPeerConnection!
 	// We require the other endpoint can receive media
-	let defaultConstraints = RTCMediaConstraints(mandatoryConstraints: [kRTCMediaConstraintsOfferToReceiveAudio: kRTCMediaConstraintsValueFalse, kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueFalse], optionalConstraints: nil)
+	let defaultConstraints = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)
 	let webSocket: URLSessionWebSocketTask
 	
 	required init?(to hostname: String, roomId: String) throws {
@@ -28,16 +27,8 @@ class PeerConnection: NSObject {
 		super.init()
 		
 		configurePeerConnection { [weak self] error in
-			guard error != nil else { print("Failed to configure peer connection: \(error!)"); return }
-			self?.initiateNegotiation { error in
-				guard error != nil else { print("Failed to initiate negotation: \(error!)"); return }
-				print("Finished negotiation")
-				self?.receiveIceCandidates { error in
-					if let error = error {
-						print("Error receiving ice candidates: \(error)")
-					}
-				}
-			}
+			guard error == nil else { print("Failed to configure peer connection: \(error!)"); return }
+			print("Configured session")
 		}
 	}
 	
@@ -49,7 +40,7 @@ class PeerConnection: NSObject {
 			guard let data = data else { completion(nil, error); return }
 			guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { completion(nil, dummyError); return }
 			completion(RTCIceServer.servers(fromCEODJSONDictionary: json), nil)
-		}
+		}.resume()
 	}
 	
 	func configurePeerConnection(completion: @escaping (Error?) -> ()) {
@@ -68,7 +59,7 @@ class PeerConnection: NSObject {
 			
 			// Add an audio stream so we can negotatiate audio with SDPs
 			let track = self.factory.audioTrack(withTrackId: "AUD0")
-			let sender = self.peerConnection.add(track, streamIds: ["AUD"])
+			self.peerConnection.add(track, streamIds: ["AUD"])
 		}
 	}
 	
@@ -102,13 +93,13 @@ class PeerConnection: NSObject {
 	/// Start signaling
 	func initiateNegotiation(completion: @escaping (Error?) -> ()) {
 		peerConnection.offer(for: defaultConstraints) { [weak self] sdp, error in
-			guard error != nil, let sdp = sdp else { completion(error!); return }
+			guard error == nil, let sdp = sdp else { completion(error); return }
 			self?.peerConnection.setLocalDescription(sdp) { error in
-				guard error != nil else { completion(error!); return }
+				guard error == nil else { completion(error!); return }
 				self?.sendSDP(sdp) { error in
-					guard error != nil else { completion(error!); return }
+					guard error == nil else { completion(error!); return }
 					self?.receiveSDP { sdp, error in
-						guard error != nil, let sdp = sdp else { completion(error!); return }
+						guard error == nil, let sdp = sdp else { completion(error!); return }
 						self?.peerConnection.setRemoteDescription(sdp) { error in
 							completion(error)
 						}
@@ -120,13 +111,13 @@ class PeerConnection: NSObject {
 	
 	func awaitNegotiation(completion: @escaping (Error?) -> ()) {
 		receiveSDP { [weak self] sdp, error in
-			guard error != nil, let sdp = sdp else { completion(error!); return }
+			guard error == nil, let sdp = sdp else { completion(error!); return }
 			self?.peerConnection.setRemoteDescription(sdp) { error in
-				guard error != nil else { completion(error!); return }
+				guard error == nil else { completion(error!); return }
 				self?.peerConnection.answer(for: self!.defaultConstraints) { sdp, error in
-					guard error != nil, let sdp = sdp else { completion(error!); return }
+					guard error == nil, let sdp = sdp else { completion(error!); return }
 					self?.peerConnection.setLocalDescription(sdp) { error in
-						guard error != nil else { completion(error!); return }
+						guard error == nil else { completion(error!); return }
 						self?.sendSDP(sdp) { error in
 							completion(error)
 						}
@@ -138,7 +129,7 @@ class PeerConnection: NSObject {
 	
 	func sendSDP(_ sdp: RTCSessionDescription, completion: @escaping (Error?) -> ()) {
 		peerConnection.setLocalDescription(sdp) { [weak self] error in
-			guard error != nil else { completion(error!); return }
+			guard error == nil else { completion(error!); return }
 			guard let jsonString = sdp.jsonData().flatMap({ String(bytes: $0, encoding: .utf8) }) else { completion(dummyError); return }
 			self?.webSocket.send(.string(jsonString)) { error in
 				guard error == nil else { completion(error!); return }
@@ -153,14 +144,13 @@ class PeerConnection: NSObject {
 			let sdp = RTCSessionDescription(fromJSONDictionary: try! result.jsonDictionary())!
 			
 			self?.peerConnection.setRemoteDescription(sdp) { error in
-				guard error != nil else { completion(nil, dummyError); return }
+				guard error == nil else { completion(nil, dummyError); return }
 				completion(sdp, nil)
 			}
 		}
 	}
 }
 
-@available(iOS 13, *)
 extension URLSessionWebSocketTask.Message {
 	func jsonDictionary() throws -> [String: Any] {
 		switch self {
@@ -176,14 +166,21 @@ extension URLSessionWebSocketTask.Message {
 	}
 }
 
-@available(iOS 13, *)
 extension PeerConnection: RTCPeerConnectionDelegate {
 	func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {
-		print("Should negotiate for some reason?")
+		initiateNegotiation { [weak self] error in
+			guard error == nil else { print("Failed to initiate negotation: \(error!)"); return }
+			print("Finished negotiation")
+			self?.receiveIceCandidates { error in
+				if let error = error {
+					print("Error receiving ice candidates: \(error)")
+				}
+			}
+		}
 	}
 	
 	func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
-		print("Signaling state changed: \(peerConnection)")
+		print("Signaling state changed: \(peerConnection.signalingState.rawValue)")
 	}
 	
 	func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {

@@ -74,13 +74,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-7t-NtO">
+                                <rect key="frame" x="0.0" y="842" width="414" height="0.0"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XYH-PS-LjH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="systemMaterialDark"/>
+                            </visualEffectView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5G-XQ-3l5">
                                 <rect key="frame" x="20" y="62" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgo-jj-Pal">
-                                <rect key="frame" x="20" y="104" width="374" height="30"/>
+                                <rect key="frame" x="20" y="143" width="374" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Connect">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,23 +102,42 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rED-Ji-66T">
+                                <rect key="frame" x="345" y="104" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgW-Ao-a54">
+                                <rect key="frame" x="20" y="109" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xqX-cQ-BgH" firstAttribute="trailing" secondItem="C0F-a6-LrZ" secondAttribute="trailing" constant="20" id="1Rb-Li-fUp"/>
+                            <constraint firstItem="xqX-cQ-BgH" firstAttribute="trailing" secondItem="rED-Ji-66T" secondAttribute="trailing" constant="20" id="4Rz-oE-1AX"/>
                             <constraint firstItem="a5G-XQ-3l5" firstAttribute="top" secondItem="C0F-a6-LrZ" secondAttribute="bottom" constant="8" id="620-mf-87k"/>
+                            <constraint firstItem="rED-Ji-66T" firstAttribute="centerY" secondItem="UgW-Ao-a54" secondAttribute="centerY" id="Gor-XR-4Qe"/>
                             <constraint firstItem="wgo-jj-Pal" firstAttribute="leading" secondItem="xqX-cQ-BgH" secondAttribute="leading" constant="20" id="K6n-Hu-YMP"/>
-                            <constraint firstItem="xqX-cQ-BgH" firstAttribute="trailing" secondItem="wgo-jj-Pal" secondAttribute="trailing" constant="20" id="Q5b-nC-63r"/>
+                            <constraint firstAttribute="trailing" secondItem="mSm-7t-NtO" secondAttribute="trailing" id="NO6-vf-cLB"/>
+                            <constraint firstItem="rED-Ji-66T" firstAttribute="top" secondItem="a5G-XQ-3l5" secondAttribute="bottom" constant="8" id="QMy-k3-Iny"/>
                             <constraint firstItem="a5G-XQ-3l5" firstAttribute="leading" secondItem="xqX-cQ-BgH" secondAttribute="leading" constant="20" id="Qp3-X5-YTx"/>
+                            <constraint firstItem="UgW-Ao-a54" firstAttribute="leading" secondItem="xqX-cQ-BgH" secondAttribute="leading" constant="20" id="Qy9-ed-A4i"/>
+                            <constraint firstItem="wgo-jj-Pal" firstAttribute="top" secondItem="rED-Ji-66T" secondAttribute="bottom" constant="8" id="RDQ-KN-TTa"/>
+                            <constraint firstItem="rED-Ji-66T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UgW-Ao-a54" secondAttribute="trailing" id="TSG-ri-NfG"/>
+                            <constraint firstAttribute="bottom" secondItem="mSm-7t-NtO" secondAttribute="bottom" id="VTx-Cn-8XF"/>
                             <constraint firstItem="C0F-a6-LrZ" firstAttribute="top" secondItem="xqX-cQ-BgH" secondAttribute="top" constant="20" id="cIC-NM-LIB"/>
+                            <constraint firstItem="mSm-7t-NtO" firstAttribute="leading" secondItem="DlH-jN-ZNQ" secondAttribute="leading" id="dbt-dQ-6BY"/>
                             <constraint firstItem="C0F-a6-LrZ" firstAttribute="leading" secondItem="xqX-cQ-BgH" secondAttribute="leading" constant="20" id="dhe-55-kuu"/>
-                            <constraint firstItem="wgo-jj-Pal" firstAttribute="top" secondItem="a5G-XQ-3l5" secondAttribute="bottom" constant="8" id="iah-ia-DqU"/>
+                            <constraint firstItem="xqX-cQ-BgH" firstAttribute="trailing" secondItem="wgo-jj-Pal" secondAttribute="trailing" constant="20" id="hM9-Cd-Blp"/>
                             <constraint firstItem="xqX-cQ-BgH" firstAttribute="trailing" secondItem="a5G-XQ-3l5" secondAttribute="trailing" constant="20" id="joa-hL-WWl"/>
+                            <constraint firstItem="mSm-7t-NtO" firstAttribute="top" secondItem="DlH-jN-ZNQ" secondAttribute="bottom" id="sbn-nx-ITm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xqX-cQ-BgH"/>
                     </view>
                     <connections>
                         <outlet property="hostname" destination="C0F-a6-LrZ" id="aTY-mF-h1S"/>
+                        <outlet property="microphoneToggle" destination="rED-Ji-66T" id="Srz-Dz-28l"/>
                         <outlet property="roomId" destination="a5G-XQ-3l5" id="8Cp-Er-o4S"/>
                     </connections>
                 </viewController>
