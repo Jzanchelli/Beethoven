@@ -8,7 +8,6 @@ import asyncio
 import websockets
 
 import random
-import time
 
 # Set global Google credentials variable from json file
 # Update to match local file structure 
@@ -23,7 +22,9 @@ from six.moves import queue
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
-TEXT_TO_DISPLAY = ""
+
+#get random number for room ID 
+ROOM_ID = random.randint(1,1001)
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -92,83 +93,11 @@ class MicrophoneStream(object):
             yield b''.join(data)
 
 
-def listen_print_loop(responses):
-    """Iterates through server responses and prints them.
-
-    The responses passed is a generator that will block until a response
-    is provided by the server.
-
-    Each response may contain multiple results, and each result may contain
-    multiple alternatives; for details, see https://goo.gl/tjCPAU.  Here we
-    print only the transcription for the top alternative of the top result.
-
-    In this case, responses are provided for interim results as well. If the
-    response is an interim one, print a line feed at the end of it, to allow
-    the next result to overwrite it, until the response is a final one. For the
-    final one, print a newline to preserve the finalized transcription.
-    """
-    num_chars_printed = 0
-    for response in responses:
-        if not response.results:
-            continue
-
-        # The `results` list is consecutive. For streaming, we only care about
-        # the first result being considered, since once it's `is_final`, it
-        # moves on to considering the next utterance.
-        result = response.results[0]
-        if not result.alternatives:
-            continue
-
-        # Display the transcription of the top alternative.
-        transcript = result.alternatives[0].transcript
-
-        # Display interim results, but with a carriage return at the end of the
-        # line, so subsequent lines will overwrite them.
-        #
-        # If the previous result was longer than this one, we need to print
-        # some extra spaces to overwrite the previous result
-        overwrite_chars = ' ' * (num_chars_printed - len(transcript))
-
-        if not result.is_final:
-            sys.stdout.write(transcript + overwrite_chars + '\r')
-            sys.stdout.flush()
-
-            num_chars_printed = len(transcript)
-
-        else:
-            TEXT_TO_DISPLAY = transcript + overwrite_chars
-            print(TEXT_TO_DISPLAY)
-            #send_to_server()
-
-            # Use file to output text (commented out to move task to server/database)
-            #outputfile = open("\\\\eawphx.edatwork.com\\uouprofile$\\cameron.anderson\\Desktop\\Hackathon2019\\transcript.txt","a")
-            #outputfile.writelines(transcript + overwrite_chars)
-
-
-            # Exit recognition if any of the transcribed phrases could be
-            # one of our keywords.
-            if re.search(r'\b(exit|quit|thank you)\b', transcript, re.I):
-                print('Exiting..')
-                #outputfile.close()
-                break
-
-            num_chars_printed = 0
-
-#def send_to_server():
 def create_socket():
     '''websocket client side for sending'''
-    #global TEXT_TO_DISPLAY
-    #get random number for room ID 
-    random_num = random.randint(1,1001)
-    print("Room ID: " + str(random_num))
-    uri = "ws://5b24e27f.ngrok.io/rooms/" + str(random_num) + "/send"
-    #async with websockets.connect(uri) as websocket: 
-    #    test = TEXT_TO_DISPLAY
-    #    TEXT_TO_DISPLAY = ""
-    #    await websocket.send(test)
-                
-        #await websocket.send("hello dan ;)")
-        
+    print("Room ID: " + str(ROOM_ID))
+    uri = "ws://c78a5568.ngrok.io/rooms/" + str(ROOM_ID) + "/send"
+
     return websockets.connect(uri)
         
 
@@ -193,16 +122,45 @@ async def audio_connection():
 
         responses = client.streaming_recognize(streaming_config, requests)
 
-        # Now, put the transcription responses to use.
-        #listen_print_loop(responses)
+        # Use responses from Google API 
         async with create_socket() as websocket:
+            num_chars_printed = 0
             for response in responses:
-                await websocket.send(response.results[0].alternatives[0].transcript)
+                if not response.results:
+                    continue
+                result = response.results[0]
+                if not result.alternatives:
+                    continue
+                transcript = result.alternatives[0].transcript
+
+                overwrite_chars = ' ' * (num_chars_printed - len(transcript))
+
+                if not result.is_final:
+                    sys.stdout.write(transcript + overwrite_chars + '\r')
+                    sys.stdout.flush()
+
+                    num_chars_printed = len(transcript)
+
+                else:
+                    text = transcript + overwrite_chars
+                    await websocket.send(text) 
+                    #await websocket.send(response.results[0].alternatives[0].transcript)
+
+                    # Use file to output text (commented out to move task to server/database)
+                    outputfile = open("C:\\Users\\cameron.anderson.EAWPHX\\Desktop\\" + str(ROOM_ID) + "transcript.txt","a")
+                    outputfile.writelines(transcript + overwrite_chars)
+
+                    if re.search(r'\b(exit|quit|thank you)\b', transcript, re.I):
+                        print('Exiting..')
+                        outputfile.close()
+                        break
+
+                    num_chars_printed = 0
                 
 
 def main():
-    #audio_connection()
     asyncio.get_event_loop().run_until_complete(audio_connection()) 
-     
+
+
 if __name__ == '__main__':
     main()
