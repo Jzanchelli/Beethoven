@@ -2,9 +2,6 @@ from __future__ import division
 
 import re
 import sys
-import os
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\cameron.anderson.EAWPHX\\Desktop\\Beethoven-service.json"
 
 from google.cloud import speech
 from google.cloud.speech import enums
