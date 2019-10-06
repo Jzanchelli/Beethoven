@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ConnectViewControllerDelegate: AnyObject {
-	func connectViewController(_ viewController: ConnectViewController, didConnectTo url: URL)
+	func connectViewController(_ viewController: ConnectViewController, didConnectTo hostname: String, at roomId: String, usingMicrophone: Bool)
 }
 
 class ConnectViewController: UIViewController {
@@ -18,9 +18,9 @@ class ConnectViewController: UIViewController {
 	
 	@IBOutlet var roomId: UITextField!
 	@IBOutlet var hostname: UITextField!
+	@IBOutlet var microphoneToggle: UISwitch!
 	
 	@IBAction func connect(_ sender: Any?) {
-		guard let url = URL(string: "ws://\(hostname.text ?? "")/rooms/\(roomId.text ?? "")/receive") else { return }
-		delegate?.connectViewController(self, didConnectTo: url)
+		delegate?.connectViewController(self, didConnectTo: hostname.text ?? "", at: roomId.text ?? "", usingMicrophone: microphoneToggle.isOn)
 	}
 }

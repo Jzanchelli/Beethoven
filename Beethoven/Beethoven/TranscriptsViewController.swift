@@ -30,11 +30,16 @@ class TranscriptsViewController: UITableViewController {
 
 
 extension TranscriptsViewController: ConnectViewControllerDelegate {
-	func connectViewController(_ viewController: ConnectViewController, didConnectTo url: URL) {
+	func connectViewController(_ viewController: ConnectViewController, didConnectTo hostname: String, at roomId: String, usingMicrophone: Bool) {
 		guard let viewController = storyboard?.instantiateViewController(identifier: "LiveTextViewController") as? LiveTextViewController else { fatalError() }
 		dismiss(animated: true)
 		viewController.loadViewIfNeeded()
-		viewController.textListener = try! TextListener(url: url)
+		viewController.textListener = try? TextListener(url: URL(string: "ws://\(hostname)/rooms/\(roomId)/receive")!)
+		
+		if usingMicrophone {
+			viewController.peerConnection = try? PeerConnection(to: hostname, roomId: roomId)
+		}
+		
 		navigationController?.pushViewController(viewController, animated: true)
 	}
 	

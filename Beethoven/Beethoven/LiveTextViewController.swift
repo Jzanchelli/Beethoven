@@ -25,6 +25,8 @@ class LiveTextViewController: UIViewController {
 		}
 	}
 	
+	var peerConnection: PeerConnection?
+	
 	func receive(_ text: String) {
 		textView.text = (textView.text ?? "") + text
 	}
