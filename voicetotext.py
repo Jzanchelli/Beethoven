@@ -4,6 +4,12 @@ import re
 import sys
 import os
 
+import asyncio
+import websockets
+
+import random
+import time
+
 # Set global Google credentials variable from json file
 # Update to match local file structure 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\cameron.anderson.EAWPHX\\Desktop\\Beethoven-service.json"
@@ -17,7 +23,7 @@ from six.moves import queue
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
-
+TEXT_TO_DISPLAY = ""
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -130,23 +136,40 @@ def listen_print_loop(responses):
             num_chars_printed = len(transcript)
 
         else:
-            print(transcript + overwrite_chars)
+            TEXT_TO_DISPLAY = transcript + overwrite_chars
+            print(TEXT_TO_DISPLAY)
 
             # Use file to output text (commented out to move task to server/database)
             #outputfile = open("\\\\eawphx.edatwork.com\\uouprofile$\\cameron.anderson\\Desktop\\Hackathon2019\\transcript.txt","a")
             #outputfile.writelines(transcript + overwrite_chars)
-            
+
+
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
-            if re.search(r'\b(exit|quit)\b', transcript, re.I):
+            if re.search(r'\b(exit|quit|thank you)\b', transcript, re.I):
                 print('Exiting..')
                 #outputfile.close()
                 break
 
             num_chars_printed = 0
 
+async def send_to_server():
+    '''websocket client side for sending'''
+    global TEXT_TO_DISPLAY
+    #get random number for room ID 
+    random_num = random.randint(1,1001)
+    print("Room ID: " + str(random_num))
+    uri = "ws://1557cbfc.ngrok.io/rooms/" + str(random_num) + "/send"
+    async with websockets.connect(uri) as websocket: 
+        test = TEXT_TO_DISPLAY
+        TEXT_TO_DISPLAY = ""
+        await websocket.send(test)
+        
+        #await websocket.send("hello dan ;)")
+        
+asyncio.get_event_loop().run_until_complete(send_to_server()) 
 
-def main():
+def audio_connection():
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'en-US'  # a BCP-47 language tag
@@ -170,6 +193,8 @@ def main():
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
 
-
+def main():
+    audio_connection()
+    
 if __name__ == '__main__':
     main()
