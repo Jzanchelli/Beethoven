@@ -43,6 +43,12 @@ class ConnectionPanel extends React.Component {
             })
 
         }
+        elseif (messageReceived.type = "candidate")
+        {
+
+            
+
+        }
 
             // receive ICE candidates
 
