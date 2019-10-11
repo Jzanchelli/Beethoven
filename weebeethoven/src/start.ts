@@ -4,6 +4,6 @@ import BeethovenServer from './Server';
 if ( process.argv[2] !== 'test' ) 
 {
   let server: BeethovenServer = new BeethovenServer();
-  server.start(3000);
+  server.start(8080);
   
 }
