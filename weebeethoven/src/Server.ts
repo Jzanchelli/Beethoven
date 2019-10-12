@@ -17,6 +17,7 @@ class BeethovenServer extends Server {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({extended: true}));
         super.addControllers(new BeetAPIController());
+
         // Point to front-end code
         if (process.env.NODE_ENV !== 'production') {
             const msg = this.DEV_MSG + process.env.EXPRESS_PORT;

@@ -3,44 +3,50 @@ import { Controller, Get } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
 import { Request, Response } from 'express';
 
-@Controller('api/say-hello')
+@Controller('api/room')
 class BeetAPIController {
 
-  public static readonly SUCCESS_MSG = 'Hello, ';
+    private rooms = new Object();
 
-  @Get(':name')
-  private sayHello(req: Request, res: Response) {
+    @Get(':code')
+        private checkRoomCode(req: Request, res: Response) {
+            try {
+                const { code } = req.params;
+                Logger.Info( code );
 
-    try {
+                var exists = code in this.rooms;
 
-      // Pull the name from the request's parameters
-      const { name } = req.params;
+                return res.status(OK).json({
+                    roomExists: exists,
+                })
 
-      // If the name is specifically "make_it_fail" throw error			
-      if (name === "make_it_fail")
-      {
-        throw Error('User Triggered Failure')
-      }
-      
-      // Log the success and name.
-      Logger.Info(BeetAPIController.SUCCESS_MSG + name);
+            }
+            catch (err)
+            {
+                Logger.Err(err, true);
+                return res.status(BAD_REQUEST).json({
+                    error: err.message,
+                });
+            }
+        }  
 
-      return res.status(OK).json(
+    @Get('join/:code')
+        private joinRoom(req: Request, res: Response) 
         {
-          message: BeetAPIController.SUCCESS_MSG + name,
-        });
-    }
-    catch (err)
-    {
-      Logger.Err(err, true);
+            try {
+                return;
+            }
+            catch (err)
+            {
+                Logger.Err(err, true);
+                return res.status(BAD_REQUEST).json({
+                    error: err.message,
+                });
+            }
 
-      return res.status(BAD_REQUEST).json(
-          {
-              error: err.message,
-          });
+        }
 
-    }
-  }
 }
+
 
 export default BeetAPIController;
